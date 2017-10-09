@@ -1,0 +1,56 @@
+server:
+  port: 8083
+
+
+spring:
+  application:
+    name: credit-score
+  http:
+    encoding:
+      enabled: true
+      force: true
+      charset: UTF-8
+  datasource:
+    name: credit
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://138.138.81.160:3306/credit?useUnicode=true&characterEncoding=utf-8&&zeroDateTimeBehavior=convertToNull 
+    username: root
+    password: 123456
+    filters: stat
+    maxActive: 20
+    initialSize: 1
+    maxWait: 60000
+    minIdle: 1
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
+
+  redis:
+    cluster:
+      nodes:
+      - 138.138.81.171:7000
+      - 138.138.81.172:7001
+      - 138.138.81.173:7002
+      - 138.138.81.181:7003
+      - 138.138.81.182:7004
+      - 138.138.81.183:7005
+    pool:
+     max-active: 10
+     max-wait: 5
+     min-idle: 1
+     max-idle: 10
+
+# MyBatis
+mybatis:
+  typeAliasesPackage: com.allinpay.credit.**.model
+  mapperLocations: classpath:mybatis/mapper/**/*.xml
+  configLocation: classpath:mybatis/mybatis-config.xml
+
+
+
